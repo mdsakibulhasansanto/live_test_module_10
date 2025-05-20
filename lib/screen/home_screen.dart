@@ -53,18 +53,26 @@ class _HomePageState extends State<HomePage> {
             ),
 
             const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: addContactList,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueGrey,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 50,right: 50,top: 10,bottom: 10),
-                child: const Text('Add  ',style: TextStyle(
-                  color: Colors.white
-                ),),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: addContactList,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueGrey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: const Text(
+                    'Add',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
               ),
             ),
+
             const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
