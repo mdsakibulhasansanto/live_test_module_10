@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             TextField(
-              controller: numberController,
+              controller: nameController,
               keyboardType: TextInputType.name,
               decoration: const InputDecoration(
                 hintText: 'Name ',
