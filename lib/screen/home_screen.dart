@@ -73,7 +73,11 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: addContactList,
+                  onPressed:  (){
+                if (_formKey.currentState!.validate()) {
+                  addContactList();
+                }
+                },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueGrey,
                     shape: RoundedRectangleBorder(
