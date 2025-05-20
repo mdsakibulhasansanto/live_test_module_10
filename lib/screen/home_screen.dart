@@ -73,15 +73,35 @@ class _HomePageState extends State<HomePage> {
                   final contact = contacts[index];
                   return GestureDetector(
                     onLongPress: () => confirmDeleteDialog(index),
-                    child: ListTile(
-                      leading: const Icon(Icons.person),
-                      title: Text(
-                        contact['name']!,
-                        style: const TextStyle(color: Colors.red),
+                    child: Card(
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      subtitle: Text(contact['number']!),
-                      trailing: const Icon(Icons.phone, color: Colors.blue),
-                    ),
+                      color: Colors.grey[200],
+                      child: ListTile(
+                        leading: const Icon(Icons.person),
+                        title: Text(
+                          contact['name']!,
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                        subtitle: Text(contact['number']!),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.phone, color: Colors.blue),
+                            const SizedBox(width: 10),
+                            IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                confirmDeleteDialog(index);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+
                   );
                 },
               ),
@@ -97,22 +117,38 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text("Confirmation"),
-        content: const Text("Are you sure for delete ?"),
+        content: const Text("Are you sure for Delete ?"),
         actions: [
           TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.grey[300],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: const EdgeInsets.all(8),
+            ),
             onPressed: () => Navigator.pop(context),
-            child: const Icon(Icons.cancel),
+            child: const Icon(Icons.cancel, color: Colors.black54),
           ),
+
           TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.red[400],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: const EdgeInsets.all(8),
+            ),
             onPressed: () {
               setState(() {
                 contacts.removeAt(index);
               });
               Navigator.pop(context);
             },
-            child: const Icon(Icons.delete),
+            child: const Icon(Icons.delete, color: Colors.white),
           ),
         ],
+
       ),
     );
   }
